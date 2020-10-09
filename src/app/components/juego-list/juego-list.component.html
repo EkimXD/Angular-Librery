@@ -1,0 +1,33 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h1>Libros</h1>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let juego of juegos; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveJuego(juego, i)"
+      >
+      <i class="fas fa-book"></i> {{ juego.title }} - {{juego.description}}
+      </li>
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllJuegos()">
+      Borrar todos
+    </button>
+  </div>
+
+  <div class="col-md-6">
+    <div *ngIf="currentJuego">
+      <app-juego-details
+        (refreshList)="refreshList()"
+        [juego]="currentJuego"
+      ></app-juego-details>
+    </div>
+
+    <!-- <div *ngIf="!currentJuego">
+      <br />
+      <p></p>
+    </div> -->
+  </div>
+</div>
